@@ -35,13 +35,6 @@ class ProductFashionController extends Controller
         if ($sort !== 'asc' && $sort !== "desc") {
             throw new InvalidArgumentException("Invalid sort parameter must be asc or desc");
         }
-
-        if ($sort === 'asc') {
-            $orderBy = 'new_price';
-        } else {
-            $orderBy = 'new_price desc';
-        }
-
         $orderBy = ($sort === 'asc') ? 'new_price' : 'new_price desc';
         $sortedProducts = DB::table('products')
             ->join('categories', 'products.categorie_id', '=', 'categories.id')
